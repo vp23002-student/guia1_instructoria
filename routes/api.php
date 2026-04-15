@@ -27,9 +27,13 @@ Route::middleware('auth:api')->group(function () {
 
     Route::prefix('posts')->group(function () {
         Route::get('/', [PostController::class, 'index']);
+        Route::get('/my-posts', [PostController::class, 'myPosts']);
         Route::get('/{post}', [PostController::class, 'show']);
         Route::post('/', [PostController::class, 'store']);
         Route::put('/{post}', [PostController::class, 'update']);
         Route::delete('/{post}', [PostController::class, 'destroy']);
+
+        Route::post('/{post}/tags', [PostController::class, 'updateTags']);
+        Route::delete('/{post}/tags', [PostController::class, 'detachTags']);
     });
 });
