@@ -4,6 +4,15 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\AutorController;
+use App\Http\Controllers\LibroController;
+use App\Http\Controllers\PrestamoController;
+
+Route::apiResource('categorias', CategoriaController::class);
+Route::apiResource('autores', AutorController::class);
+Route::apiResource('libros', LibroController::class);
+Route::apiResource('prestamos', PrestamoController::class);
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -37,3 +46,5 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{post}/tags', [PostController::class, 'detachTags']);
     });
 });
+
+
